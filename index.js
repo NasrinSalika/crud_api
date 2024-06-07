@@ -2,7 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const cors = require("cors");
-app.use(cors());
+const corsConfig = {
+    origin: "*",
+    credential: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+};
+app.use(cors(corsConfig));
 
 const app=express();
 app.use(express.json());
