@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
 const cors = require("cors");
+
+const app=express();
+app.use(express.json());
+
 const corsConfig = {
     origin: "*",
     credential: true,
@@ -10,8 +13,7 @@ const corsConfig = {
 app.options("", cors(corsConfig));
 app.use(cors(corsConfig));
 
-const app=express();
-app.use(express.json());
+
 
 // connect to mongodb
 mongoose.connect('mongodb+srv://nasrinsalika:nasrin%402024@nasrincluster.lsa0kov.mongodb.net/clothes')
