@@ -21,9 +21,9 @@ const UserCrud = mongoose.model("crud", UserSchema);
 
 
 
-app.get('/', (req, res) => {
-    return res.json({ status:200, message: "Server running at " + process.env.PORT })
-})
+// app.get('/', (req, res) => {
+//     return res.json({ status:200, message: "Server running at " + process.env.PORT })
+// })
 
 // get method
 
