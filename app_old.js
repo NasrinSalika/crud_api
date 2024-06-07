@@ -96,6 +96,14 @@ app.listen(3000, () => {
      console.log("Server is Running")
     })
 
+    // {
+    //     "version": 2, 
+    //     "rewrites": [
+    //         { "source": "/(.*)", "destination": "/" }
+    //     ]
+    // }
+
+
 
 
     // const express = require("express");
