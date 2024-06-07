@@ -2,10 +2,10 @@
   "name": "backend_crud",
   "version": "1.0.0",
   "description": "Backend Crud node express with MySQL Database project",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "backend",
