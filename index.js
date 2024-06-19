@@ -1,9 +1,10 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const dontenv = require("dotenv")
 const cors = require("cors");
+const app = express()
 
-const app=express();
-app.use(express.json());
+
+dotenv.config();
 
 const corsConfig = {
     origin: "*",
@@ -14,11 +15,17 @@ app.options("", cors(corsConfig));
 app.use(cors(corsConfig));
 
 
+const mongoose = require("mongoose")
+require('dotenv').config();
 
-// connect to mongodb
-mongoose.connect('mongodb+srv://nasrinsalika:nasrin%402024@nasrincluster.lsa0kov.mongodb.net/clothes')
 
-// Moongoose schema
+app.use(express.json());
+
+mongoose.connect(process.env.MONGODB_CONNECT_URL)
+.then(() => console.log("mongodb connected"))
+.catch((error) => console.log(error));
+
+
 
 const UserSchema = new mongoose.Schema({
     name: String,
@@ -27,20 +34,23 @@ const UserSchema = new mongoose.Schema({
     id: Number,
 })   
 
-// Moongoose model
+
 const UserCrud = mongoose.model("crud", UserSchema);
 
 
 
-// app.get('/', (req, res) => {
-//     return res.json({ status:200, message: "Server running at " + process.env.PORT })
-// })
-
-// get method
-
-app.get("/crud", (req,res) => {
+app.get("/crud",async (req,res) => {
     UserCrud.find({}).then(function(crud) {
         res.json(crud);
+    }).catch(function(err) {
+        console.log(err);
+    })
+})
+
+app.get("/crud/:id", async(req, res) =>{
+    let id = req.params.id;
+    UserCrud.findById(id).then(function(crud) {
+        res.json(crud)
     }).catch(function(err) {
         console.log(err);
     })
@@ -109,9 +119,13 @@ app.delete("/deleteCrud/:id", async (req, res) => {
 });
 
 
-app.listen(3000, () => {
-    console.log("Server is Running")
-   })
+// app.listen(3000, () => {
+//     console.log("Server is Running")
+//    })
+
+app.listen(process.env.PORT, () => {
+    console.log("server runs on 3000")
+})
 
 
 
